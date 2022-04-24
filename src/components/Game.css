@@ -1,0 +1,30 @@
+h1 {
+  color: goldenrod;
+  text-align: center;
+}
+
+#message-el {
+  font-style: italic;
+}
+
+button {
+  color: #016f32;
+  width: 150px;
+  background-color: goldenrod;
+  border-radius: 10px;
+  padding-bottom: 5px;
+  padding-top: 5px;
+  font-weight: bold;
+}
+
+.game-btn {
+  display: block;
+}
+
+.game {
+  position: relative;
+  height: 72vh;
+  width: 100%;
+  text-align: center;
+  margin: 4%;
+}
