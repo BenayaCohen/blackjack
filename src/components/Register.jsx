@@ -1,26 +1,21 @@
-import { Form, Button, Modal, Alert } from "react-bootstrap";
+import { Form, Button, Modal } from "react-bootstrap";
 import React, { useState } from "react";
-import useAuth from "../hooks/useAuth"
-
-
+import useAuth from "../hooks/useAuth";
 
 const Register = ({ handleSignUpClose, modalSignUp, handleSignUpShow }) => {
-  const { onLogin } = useAuth();
+  const { onRegister } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [fullName, setFullName] = useState("");
   const [nickname, setNickname] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
-  const [isLoginError, setIsLoginError] = useState(false);
 
   async function handleLogin() {
-    setIsLoginError(false);
     setIsLoggingIn(true);
     try {
-      await onLogin(email, password);
+      await onRegister(email, password);
     } catch (err) {
       console.log(err);
-      setIsLoginError(true);
     } finally {
       setIsLoggingIn(false);
     }
@@ -38,11 +33,6 @@ const Register = ({ handleSignUpClose, modalSignUp, handleSignUpShow }) => {
       <Modal show={modalSignUp} onHide={handleSignUpClose}>
         <Modal.Header closeButton>
           <Modal.Title>SignUp</Modal.Title>
-          {isLoginError && (
-            <Alert variant="danger">
-              Login error! Incorrect username or password
-            </Alert>
-          )}
         </Modal.Header>
         <Modal.Body>
           <Form>
@@ -91,7 +81,11 @@ const Register = ({ handleSignUpClose, modalSignUp, handleSignUpShow }) => {
           </Form>
         </Modal.Body>
         <Modal.Footer>
-          <Button variant="success" onClick={handleLogin} disabled = {isLoggingIn}>
+          <Button
+            variant="success"
+            onClick={handleLogin}
+            disabled={isLoggingIn}
+          >
             SignUp
           </Button>
         </Modal.Footer>

@@ -11,12 +11,11 @@ const Game = () => {
   const [isAlive, setIsAlive] = useState(false);
   const [sum, setSum] = useState("");
   const [score, setScore] = useState("");
-  const [player, setPlayer] = useState("");
 
   function getRandomCard() {
     let randomNumber = Math.floor(Math.random() * 13) + 1;
-    if (randomNumber > 10) {
-      return 10;
+    if (randomNumber > 9) {
+      return 9;
     } else if (randomNumber === 1) {
       return 11;
     } else {
@@ -37,10 +36,11 @@ const Game = () => {
   let hand = sum;
 
   function renderGame() {
-
     setMessage("want to play around?");
-    if (hand <= 20) { //fix the condation
+    if (hand <= 20) {
       setMessage("do you want to draw a new card?");
+      setIsAlive(true);
+      setScore("5");
     } else if (hand === 21) {
       setMessage("wohoo!! you got a blackjake!");
       setBlackjack(true);
@@ -58,7 +58,7 @@ const Game = () => {
   function newCardOnDeck() {
     if (alive === true && win === false) {
       let newHand = getRandomCard();
-     setSum(sum + newHand);
+      setSum(sum + newHand);
       hand = sum + newHand;
       renderGame();
       setNewCard(newHand);
@@ -78,9 +78,7 @@ const Game = () => {
           cards: {firstCard} {secondCard}
         </p>
       ) : (
-        <p className="card-el">
-          cards: {newCard} 
-        </p>
+        <p className="card-el">cards: {newCard}</p>
       )}
       {!newCard ? (
         <p className="sum-el">sum: {sum}</p>
@@ -94,11 +92,9 @@ const Game = () => {
       <Button variant="success" onClick={newCardOnDeck}>
         NEW CARD
       </Button>
-      {!blackjake ? (
-        <p className="score">Score: 0 </p>
-      ) : (
-        <p className="score">Score: {score} </p>
-      )}
+
+      <p className="score">Score: {score} </p>
+
       <Button variant="success" onClick={newGame}>
         New Game
       </Button>

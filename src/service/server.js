@@ -3,25 +3,29 @@ const api = axios.create({
   baseURL: "http://localhost:8080",
 });
 
-
-function setAuthHeader(token) {
-  api.defaults.headers["Authorization"] = `Bearer ${token}`;
-}
-
-async function login(username, password) {
-  const response = await api.post("/auth/login", { username, password });
+async function login(email, password) {
+  const response = await api.post("/auth/login", { email, password });
   return response.data;
 }
 
-/* async function login(username, password) {
-  const response = await api.post("/auth/login", { username, password });
-  return response.data;  register
+async function register(email, password, fullName, nickName) {
+  const response = await api.post("/auth/login", {
+    email,
+    password,
+    fullName,
+    nickName,
+  });
+  return response.data;
 }
 
-async function login(username, password) {
-  const response = await api.post("/auth/login", { username, password });
-  return response.data; score
-} */
+async function addScore(score) {
+  const response = await api.get(`/score`);
+  return response.data;
+}
 
+async function highScore() {
+  const response = await api.post("/score");
+  return response.data;
+}
 
-export {login, setAuthHeader}
+export { login, register, addScore, highScore };

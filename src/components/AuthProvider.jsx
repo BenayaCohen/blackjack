@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import AuthContext from "../contex/AuthContex";
-import { login } from "../service/server";
+import { login, register } from "../service/server";
 
 function AuthProvider({ onAuthReady, children }) {
   const [activeUser, setActiveUser] = useState(
@@ -18,13 +18,26 @@ function AuthProvider({ onAuthReady, children }) {
 
   async function handleLogout(e) {
     localStorage.removeItem("activeUser");
-    localStorage.removeItem("token");
     setActiveUser(null);
+    navigate("/");
   }
 
+  async function handlRgister(email, password, fullName, nickName) {
+    const { user } = await register(email, password, fullName, nickName);
+    localStorage.activeUser = JSON.stringify(user);
+    setActiveUser(user);
+  }
+
+  async function handlScore(email, password, fullName, nickName) {
+    const { user } = await register(email, password, fullName, nickName);
+    localStorage.activeUser = JSON.stringify(user);
+    setActiveUser(user);
+  }
+  // add score, last scroe, highst score
+  
   return (
     <AuthContext.Provider
-      value={{ activeUser, onLogin: handleLogin, onLogout: handleLogout }}
+      value={{ activeUser, onLogin: handleLogin, onLogout: handleLogout, onRegister: handlRgister }}
     >
       {children}
     </AuthContext.Provider>
