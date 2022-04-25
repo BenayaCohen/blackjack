@@ -6,8 +6,7 @@ import { Route, Routes } from "react-router-dom";
 import Game from "./components/Game";
 import GameHeader from "./components/GameHeader";
 import AuthProvider from "./components/AuthProvider";
-import ProtectedRoute from "./components/ProtectedRoute";
-
+import GameNav from "./components/GameNav";
 function App() {
   const [modalLogin, setModalLogin] = useState(false);
   const [modalSignUp, setModalSignUp] = useState(false);
@@ -30,6 +29,7 @@ function App() {
             handleSignUpClose,
           }}
         >
+          <GameNav />
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/gameheader" element={<GameHeader />}></Route>

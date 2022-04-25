@@ -1,19 +1,16 @@
 import { Container, Button } from "react-bootstrap";
-import { useNavigationType } from "react-router-dom";
 import useAuth from "../hooks/useAuth";
 
 const GameHeader = ({score}) => {
   const { onLogout } = useAuth();
   
 
-  const navigate = useNavigationType;
-  function hedelLogOut() {
-    navigate("/game");
-  }
 
   const start = () => {
     window.location.pathname = "/game";
   };
+
+
   return (
     <Container style={{ margin: "4%", textAlign: "center" }}>
       <h1>welcom to the Blackjack</h1>
@@ -21,7 +18,7 @@ const GameHeader = ({score}) => {
       <Button style={{ margin: "4%" }} variant="success" onClick={start}>
         start game
       </Button>
-      <Button variant="success" onClick={hedelLogOut}>
+      <Button variant="success" onClick={onLogout}>
         log out
       </Button>
       <h3>Score</h3>

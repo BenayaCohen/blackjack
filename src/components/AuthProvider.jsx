@@ -5,7 +5,7 @@ import { login, register } from "../service/server";
 
 function AuthProvider({ onAuthReady, children }) {
   const [activeUser, setActiveUser] = useState(
-    localStorage.activeUser ? JSON.parse(localStorage.activeUser) : null
+    localStorage.activeUser ? JSON.parse(localStorage.activeUser) : false
   );
   const navigate = useNavigate();
 
@@ -18,7 +18,7 @@ function AuthProvider({ onAuthReady, children }) {
 
   async function handleLogout(e) {
     localStorage.removeItem("activeUser");
-    setActiveUser(null);
+    setActiveUser(false);
     navigate("/");
   }
 
