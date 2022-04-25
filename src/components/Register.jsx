@@ -6,7 +6,9 @@ const Register = ({ handleSignUpClose, modalSignUp, handleSignUpShow }) => {
   const { onRegister } = useAuth();
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [fullName, setFullName] = useState("");
+  const [firstName, setFirstName] = useState("");
+  const [lastName, setLastName] = useState("");
+
   const [nickname, setNickname] = useState("");
   const [isLoggingIn, setIsLoggingIn] = useState(false);
 
@@ -61,13 +63,21 @@ const Register = ({ handleSignUpClose, modalSignUp, handleSignUpShow }) => {
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
               />
-              <Form.Label>First and Last Name</Form.Label>
+              <Form.Label>First  Name</Form.Label>
               <Form.Control
                 type="text"
                 placeholder="First and Last Name"
                 autoFocus
-                value={fullName}
-                onChange={(e) => setFullName(e.target.value)}
+                value={firstName}
+                onChange={(e) => setFirstName(e.target.value)}
+              />
+              <Form.Label> Last Name</Form.Label>
+              <Form.Control
+                type="text"
+                placeholder="First and Last Name"
+                autoFocus
+                value={lastName}
+                onChange={(e) => setLastName(e.target.value)}
               />
             </Form.Group>
             <Form.Label>Nickname</Form.Label>

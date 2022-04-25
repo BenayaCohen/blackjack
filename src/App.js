@@ -33,7 +33,7 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />}></Route>
             <Route path="/gameheader" element={<GameHeader />}></Route>
-            <Route path="/game" element={<Game />}></Route>
+            <Route path="/game" element={ <Game /> }></Route>
           </Routes>
         </FirstContext.Provider>
       </AuthProvider>
